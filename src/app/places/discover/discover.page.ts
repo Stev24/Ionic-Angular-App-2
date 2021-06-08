@@ -13,6 +13,7 @@ import { SegmentChangeEventDetail} from '@ionic/core';
 })
 export class DiscoverPage implements OnInit, OnDestroy {
 
+  isLoading = false;
   loadedPlaces : Place[];
   listedLoadedPlaces: Place[];
   relevantPlaces: Place[];
@@ -28,6 +29,13 @@ export class DiscoverPage implements OnInit, OnDestroy {
       this.listedLoadedPlaces = this.relevantPlaces.slice(1);
     })
 
+  }
+
+  ionViewWillEnter(){
+    this.isLoading = true;
+    this.placesService.fetchPlaces().subscribe( () => {
+      this.isLoading = false;
+    });
   }
 
   onOpenMenu(){
