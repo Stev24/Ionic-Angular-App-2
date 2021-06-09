@@ -129,7 +129,6 @@ export class PlacesService {
           return this.places;
         }),
         take(1),
-        delay(1000),
         tap(places => {
           this._places.next(places.concat(newPlace));
         })
@@ -149,7 +148,7 @@ export class PlacesService {
       }),
       switchMap(places=> {
         const updatedPlaceIndex = places.findIndex(pl =>  pl.id === placeId );
-        const updatedPlaces = [...places];
+        updatedPlaces = [...places];
         const oldPlace = updatedPlaces[updatedPlaceIndex];
         updatedPlaces[updatedPlaceIndex] = new Place(
           oldPlace.id,
