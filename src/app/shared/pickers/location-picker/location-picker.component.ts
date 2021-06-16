@@ -5,7 +5,7 @@ import { environment } from './../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { MapModalComponent } from './../../map-modal/map-modal.component';
 import { ModalController, ActionSheetController, AlertController } from '@ionic/angular';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { of } from 'rxjs';
 import { Geolocation } from '@capacitor/geolocation';
 import { Button } from 'selenium-webdriver';
@@ -19,6 +19,7 @@ import { Button } from 'selenium-webdriver';
 export class LocationPickerComponent implements OnInit {
 
   @Output() locationPick = new EventEmitter<PlaceLocation>();
+  @Input() showPreview = false;
   selectedLocationImage: string;
   isLoading = false;
 
